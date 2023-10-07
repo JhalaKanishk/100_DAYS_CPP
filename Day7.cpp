@@ -82,16 +82,51 @@ int tofindMax(int arr[],int n){
 }
 
 int tofindMin(int arr[],int n){
-    int Min = 0;
+    int Min = 12237293;
     for(int i=0;i<=n-1;i++){
         Min = min(Min,arr[i]);
     }
     return Min;
 }
 
+int totalSum(int arr[],int n){
+    int sum = 0;
+    for(int i=0;i<=n-1;i++){
+        sum += arr[i];
+    } 
+    return sum;
+}
+
+void subArrays(int arr[],int n){
+    for(int i=0;i<=n-1;i++){
+        for(int j=i;j<=n-1;j++){
+           for(int k=i;k<=j;k++){
+                cout << arr[k] <<" ";           
+           }
+            cout << " " << endl;
+        }
+    }
+}
+
+int maxSubarraySum(int arr[],int n){
+    //O[N]
+    int maxSum = 0;
+    int currSum = 0;
+    for(int i=0;i<=n-1;i++){
+        currSum += arr[i];
+        if(currSum > maxSum){
+            maxSum = currSum;
+        }
+        if(currSum < 0){
+            currSum = 0;
+        }
+    }
+    return maxSum;
+}
+
 int main(){
-    //cout << "Day 7/100 Days of Code" << endl;
-    //TOPIC - 1 DVANCED FUNCTION QUESTION
+    cout << "Day 7/100 Days of Code" << endl;
+    //TOPIC - 1 ADVANCED FUNCTION QUESTION
 
     //Q1 Sum of N natural Numbers
     // int n;
@@ -127,7 +162,7 @@ int main(){
     // cout << "Resultant Decimal Number is : " << OctaltoDecimal(o) << endl;
 
     //TOPIC 2 : ARRAY CHALLENGES
-    //Q1 : MAXIMUM in ARRAY
+    //Q1 : MAXIMUM & MINIMUM in ARRAY
     cout << "Enter Array Size : " << endl;
     int size;
     cin >> size;
@@ -144,4 +179,17 @@ int main(){
     cout << "\nMaximum in Array is : " << tofindMax(arr,size) << endl;
     //tofindMin
     cout << "\nMinimum in Array is : " << tofindMin(arr,size) << endl;
+
+    //Q2 : SUM of all Array elements 
+    cout << "Sum of All Array Element is : " << totalSum(arr,size) << endl;
+
+    //Q3 : SUB-ARRAYS genration
+    cout << "Total Possible Sub-Arrays are :" << endl;
+    subArrays(arr,size);
+
+    //Q4 : MAXIMUM Sub-Array Sum  || KADANE'S ALGO
+    cout << "Maximum Sub-Array Sum is : " << maxSubarraySum(arr,size) << endl;
+    
+    return 0;
+ 
 }
